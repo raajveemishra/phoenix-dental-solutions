@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phoenix Dental Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<style>
+  :root{
+    --navy:#0E2A47;
+    --deep-blue:#1B4B73;
+    --sky:#3E7CA6;
+    --powder:#BBD8EB;
+    --mist:#E9F2F8;
+    --white:#FFFFFF;
+    --cream:#FAFCFE;
+    --line:rgba(14,42,71,0.12);
+    --shadow:0 20px 50px rgba(14,42,71,0.12);
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Outfit',sans-serif;
+    background:var(--cream);
+    color:var(--navy);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+
+  /* ---------- Smile arc signature element ---------- */
+  .smile-divider{
+    width:100%;
+    height:60px;
+    display:block;
+  }
+  .smile-divider path{
+    fill:none;
+    stroke:var(--sky);
+    stroke-width:2;
+    stroke-linecap:round;
+    opacity:.55;
+  }
+
+  /* ---------- Top Nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;
+    z-index:1000;
+    background:rgba(250,252,254,0.85);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    transition:all .4s var(--ease);
+  }
+  .nav-wrap{
+    max-width:1280px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--navy);
+    cursor:pointer;
+  }
+  .logo .mark{
+    width:34px;height:34px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .nav-links{display:flex;gap:6px;}
+  .nav-links li button{
+    background:none;border:none;font-family:'Outfit',sans-serif;
+    font-size:14.5px;font-weight:500;color:var(--deep-blue);
+    padding:10px 16px;border-radius:30px;cursor:pointer;
+    transition:all .3s var(--ease);position:relative;
+  }
+  .nav-links li button:hover{background:var(--mist);color:var(--navy);}
+  .nav-links li button.active{background:var(--navy);color:var(--white);}
+  .nav-cta{
+    background:var(--navy);color:var(--white);
+    padding:11px 24px;border-radius:30px;font-size:14px;font-weight:600;
+    border:none;cursor:pointer;transition:all .3s var(--ease);
+    box-shadow:0 8px 20px rgba(14,42,71,0.25);
+  }
+  .nav-cta:hover{background:var(--deep-blue);transform:translateY(-2px);box-shadow:0 12px 26px rgba(14,42,71,0.32);}
+  .burger{display:none;background:none;border:none;cursor:pointer;}
+
+  /* ---------- Page system ---------- */
+  .page{display:none;animation:fadeIn .6s var(--ease);}
+  .page.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+  section{padding:120px 32px;position:relative;}
+  .inner{max-width:1280px;margin:0 auto;}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--sky);font-weight:600;margin-bottom:18px;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--sky);}
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    padding:160px 32px 100px;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(62,124,166,0.18), transparent 55%),
+      radial-gradient(circle at 10% 90%, rgba(187,216,235,0.5), transparent 50%),
+      linear-gradient(180deg,#FAFCFE 0%, #F1F8FC 100%);
+    position:relative;overflow:hidden;
+  }
+  .blob{
+    position:absolute;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(62,124,166,0.25), rgba(187,216,235,0.05));
+    filter:blur(10px);
+    animation:float 9s ease-in-out infinite;
+  }
+  .blob.b1{width:420px;height:420px;top:-100px;right:-80px;animation-delay:0s;}
+  .blob.b2{width:280px;height:280px;bottom:-60px;left:8%;animation-delay:2s;background:radial-gradient(circle at 30% 30%, rgba(14,42,71,0.1), transparent);}
+  @keyframes float{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-26px) scale(1.04);}}
+
+  .hero-grid{
+    display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;
+    position:relative;z-index:2;max-width:1280px;margin:0 auto;width:100%;
+  }
+  .hero h1{
+    font-size:clamp(40px,5.2vw,68px);line-height:1.05;color:var(--navy);
+    margin-bottom:26px;
+  }
+  .hero h1 em{font-style:italic;color:var(--sky);}
+  .hero p.lead{
+    font-size:18px;line-height:1.7;color:#3C5A75;max-width:520px;margin-bottom:38px;
+  }
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary,.btn-secondary{
+    padding:16px 32px;border-radius:40px;font-weight:600;font-size:15px;
+    cursor:pointer;border:none;transition:all .35s var(--ease);display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-primary{
+    background:var(--navy);color:var(--white);
+    box-shadow:0 14px 30px rgba(14,42,71,0.28);
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(14,42,71,0.36);background:var(--deep-blue);}
+  .btn-secondary{
+    background:transparent;color:var(--navy);border:1.5px solid var(--navy);
+  }
+  .btn-secondary:hover{background:var(--navy);color:var(--white);transform:translateY(-3px);}
+
+  .hero-visual{
+    position:relative;display:flex;align-items:center;justify-content:center;
+  }
+  .hero-card{
+    width:100%;aspect-ratio:1/1.05;border-radius:32px;
+    background:linear-gradient(160deg,var(--navy),var(--deep-blue) 55%, var(--sky));
+    position:relative;overflow:hidden;box-shadow:var(--shadow);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero-card svg{width:80%;animation:pulseTooth 4.5s ease-in-out infinite;}
+  @keyframes pulseTooth{0%,100%{transform:scale(1) translateY(0);}50%{transform:scale(1.05) translateY(-8px);}}
+  .hero-logo{
+    width:60%;
+    height:auto;
+    object-fit:contain;
+    animation:pulseTooth 4.5s ease-in-out infinite;
+}
+  .stat-chip{
+    position:absolute;background:var(--white);border-radius:18px;padding:16px 20px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:2px;
+    animation:floatChip 6s ease-in-out infinite;
+  }
+  .stat-chip .num{font-family:'Fraunces',serif;font-size:24px;font-weight:700;color:var(--navy);}
+  .stat-chip .lbl{font-size:11.5px;color:var(--sky);text-transform:uppercase;letter-spacing:.08em;}
+  .chip-1{top:6%;left:-8%;animation-delay:0s;}
+  .chip-2{bottom:8%;right:-6%;animation-delay:1.5s;}
+  @keyframes floatChip{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+
+  /* ---------- section intro center ---------- */
+  .sec-head{text-align:center;max-width:680px;margin:0 auto 64px;}
+  .sec-head h2{font-size:clamp(30px,4vw,46px);color:var(--navy);line-height:1.15;}
+  .sec-head p{color:#557191;font-size:16.5px;margin-top:16px;line-height:1.7;}
+
+  /* ---------- HOME: quick links to other pages ---------- */
+  .quicklinks{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:20px;
+  }
+  .qcard{
+    background:var(--white);border:1px solid var(--line);border-radius:22px;
+    padding:30px 24px;text-align:center;cursor:pointer;
+    transition:all .4s var(--ease);
+  }
+  .qcard:hover{transform:translateY(-10px);box-shadow:var(--shadow);border-color:transparent;background:linear-gradient(160deg,var(--white),var(--mist));}
+  .qcard .ic{
+    width:54px;height:54px;border-radius:50%;background:var(--mist);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 18px;
+    transition:all .4s var(--ease);
+  }
+  .qcard:hover .ic{background:var(--navy);}
+  .qcard:hover .ic svg{stroke:var(--white);}
+  .qcard .ic svg{width:24px;height:24px;stroke:var(--navy);transition:all .4s var(--ease);}
+  .qcard h4{font-size:16.5px;margin-bottom:8px;color:var(--navy);}
+  .qcard p{font-size:13px;color:#6A86A1;line-height:1.5;margin-bottom:14px;}
+  .qcard .go{font-size:12.5px;font-weight:600;color:var(--sky);}
+
+  /* ---------- Services grid (home preview + full page) ---------- */
+  .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .service-card{
+    background:var(--white);border-radius:20px;padding:32px 26px;
+    border:1px solid var(--line);transition:all .4s var(--ease);position:relative;overflow:hidden;
+  }
+  .service-card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--sky),var(--navy));
+    transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);
+  }
+  .service-card:hover::before{transform:scaleX(1);}
+  .service-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);}
+  .service-num{font-family:'Fraunces',serif;font-size:13px;color:var(--powder);font-weight:700;margin-bottom:14px;}
+  .service-card .ic{
+    width:46px;height:46px;border-radius:14px;background:var(--mist);
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  }
+  .service-card .ic svg{width:22px;height:22px;stroke:var(--navy);}
+  .service-card h4{font-size:17px;margin-bottom:10px;color:var(--navy);}
+  .service-card p{font-size:13.5px;color:#6A86A1;line-height:1.6;}
+
+  /* ---------- Team ---------- */
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+  .team-card{
+    background:var(--white);border-radius:24px;overflow:hidden;border:1px solid var(--line);
+    transition:all .4s var(--ease);
+  }
+  .team-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);}
+  .team-photo{
+    height:240px;background:linear-gradient(150deg,var(--powder),var(--mist));
+    display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+  }
+  .team-photo svg{width:90px;height:90px;stroke:var(--navy);opacity:.85;}
+  .team-photo img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:white;;
+    display:block;
+}
+  .team-info{padding:24px 24px 28px;}
+  .team-info h4{font-size:18px;color:var(--navy);margin-bottom:4px;}
+  .team-info .role{font-size:13px;color:var(--sky);font-weight:600;margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em;}
+  .team-info p{font-size:13.5px;color:#6A86A1;line-height:1.6;}
+
+  /* ---------- Booking ---------- */
+  .book-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:flex-start;}
+  .book-info h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:18px;}
+  .book-info p{color:#557191;line-height:1.75;margin-bottom:30px;}
+  .book-steps{display:flex;flex-direction:column;gap:18px;}
+  .book-step{display:flex;gap:16px;align-items:flex-start;}
+  .book-step .n{
+    width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--white);
+    display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:14px;flex-shrink:0;
+  }
+  .book-step h5{font-size:15px;color:var(--navy);margin-bottom:4px;}
+  .book-step p{font-size:13.5px;color:#6A86A1;margin:0;}
+
+  .book-form{
+    background:var(--white);border-radius:26px;padding:40px;box-shadow:var(--shadow);border:1px solid var(--line);
+  }
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .form-row.full{grid-template-columns:1fr;}
+  .field label{font-size:12.5px;font-weight:600;color:var(--deep-blue);margin-bottom:7px;display:block;text-transform:uppercase;letter-spacing:.04em;}
+  .field input,.field select,.field textarea{
+    width:100%;padding:13px 16px;border-radius:12px;border:1.5px solid var(--line);
+    font-family:'Outfit',sans-serif;font-size:14px;color:var(--navy);background:var(--cream);
+    transition:all .3s var(--ease);
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--sky);background:var(--white);box-shadow:0 0 0 4px rgba(62,124,166,0.12);}
+  .submit-btn{
+    width:100%;padding:16px;border-radius:14px;background:var(--navy);color:var(--white);
+    border:none;font-weight:600;font-size:15px;cursor:pointer;margin-top:8px;
+    transition:all .35s var(--ease);box-shadow:0 14px 30px rgba(14,42,71,0.25);
+  }
+  .submit-btn:hover{background:var(--deep-blue);transform:translateY(-2px);}
+  .form-note{font-size:12px;color:#8AA3BB;margin-top:14px;text-align:center;}
+
+  /* ---------- Testimonials ---------- */
+  .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .test-card{
+    background:var(--white);border-radius:22px;padding:34px 28px;border:1px solid var(--line);
+    transition:all .4s var(--ease);position:relative;
+  }
+  .test-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+  .stars{display:flex;gap:4px;margin-bottom:18px;}
+  .stars svg{width:16px;height:16px;fill:var(--sky);}
+  .test-card p.quote{font-size:14.5px;line-height:1.75;color:#3C5A75;margin-bottom:22px;}
+  .test-person{display:flex;align-items:center;gap:12px;}
+  .test-avatar{
+    width:42px;height:42px;border-radius:50%;background:var(--mist);
+    display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;color:var(--navy);
+  }
+  .test-person h5{font-size:14px;color:var(--navy);}
+  .test-person span{font-size:12px;color:#8AA3BB;}
+
+  /* ---------- Contact (shared component, repeated each page) ---------- */
+  .contact-block{
+    background:linear-gradient(165deg,var(--navy) 0%, var(--deep-blue) 100%);
+    border-radius:32px;padding:64px 50px;margin:0 32px 60px;color:var(--white);
+    position:relative;overflow:hidden;
+  }
+  .contact-block .blob{background:radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);}
+  .contact-inner{max-width:1216px;margin:0 auto;position:relative;z-index:2;}
+  .contact-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:46px;}
+  .contact-top h3{font-size:clamp(26px,3.2vw,36px);color:var(--white);}
+  .contact-top p{color:var(--powder);font-size:14.5px;max-width:420px;margin-top:10px;line-height:1.6;}
+  .contact-cta{
+    background:var(--white);color:var(--navy);padding:14px 28px;border-radius:30px;font-weight:600;font-size:14px;
+    border:none;cursor:pointer;transition:all .3s var(--ease);
+  }
+  .contact-cta:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,0.25);}
+  .contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;border-top:1px solid rgba(255,255,255,0.15);padding-top:38px;}
+  .contact-map{
+
+    margin-top:50px;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:var(--shadow);
+
+}
+
+.contact-map iframe{
+
+    width:100%;
+
+    height:380px;
+
+    border:0;
+
+    display:block;
+
+}
+  .contact-col h6{font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--powder);margin-bottom:16px;font-weight:600;}
+  .contact-col a,.contact-col p{display:block;font-size:14px;color:rgba(255,255,255,0.92);margin-bottom:10px;line-height:1.6;transition:color .25s;}
+  .contact-col a:hover{color:var(--powder);}
+  .social-row{display:flex;gap:10px;margin-top:8px;}
+  .social-row a{
+    width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.12);
+    display:flex;align-items:center;justify-content:center;transition:all .3s var(--ease);margin:0;
+  }
+  .social-row a:hover{background:var(--white);}
+  .social-row a svg{width:16px;height:16px;stroke:var(--white);transition:all .3s var(--ease);}
+  .social-row a:hover svg{stroke:var(--navy);}
+
+  footer{
+    text-align:center;padding:26px 32px 40px;font-size:12.5px;color:#8AA3BB;
+  }
+
+  /* ---------- Page hero (sub pages) ---------- */
+  .page-hero{
+    padding:160px 32px 70px;text-align:center;
+    background:linear-gradient(180deg,#F1F8FC 0%, var(--cream) 100%);
+    position:relative;overflow:hidden;
+  }
+  .page-hero h1{font-size:clamp(34px,4.6vw,54px);color:var(--navy);}
+  .page-hero p{color:#557191;max-width:560px;margin:16px auto 0;font-size:16px;line-height:1.7;}
+
+  /* ---------- About strip on home ---------- */
+  .about-strip{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+  .about-visual{
+    aspect-ratio:4/3.2;border-radius:28px;
+    background:linear-gradient(150deg,var(--powder),var(--mist));
+    display:flex;align-items:center;justify-content:center;position:relative;
+    box-shadow:var(--shadow);
+  }
+  .about-visual svg{width:45%;}
+  .about-points{display:flex;flex-direction:column;gap:22px;margin-top:30px;}
+  .about-point{display:flex;gap:16px;}
+  .about-point .dot{
+    width:38px;height:38px;border-radius:50%;background:var(--mist);flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .about-point .dot svg{width:18px;height:18px;stroke:var(--navy);}
+  .about-point h5{font-size:15.5px;color:var(--navy);margin-bottom:4px;}
+  .about-point p{font-size:13.5px;color:#6A86A1;margin:0;line-height:1.6;}
+
+/* ================= GALLERY ================= */
+
+.gallery-section{
+    padding:40px 0 90px;
+    overflow:hidden;
+}
+
+.gallery-wrapper{
+
+    position:relative;
+
+    max-width:1400px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.gallery-carousel{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:40px;
+
+    width:100%;
+
+    height:650px;
+
+    perspective:1800px;
+}
+
+/* CARD */
+
+.gallery-card{
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    transition:all .6s cubic-bezier(.22,1,.36,1);
+
+    box-shadow:0 25px 70px rgba(0,0,0,.12);
+
+    position:relative;
+}
+
+.gallery-card img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    user-select:none;
+
+    pointer-events:none;
+}
+
+/* LEFT */
+
+.gallery-card.left{
+
+    width:280px;
+
+    height:420px;
+
+    opacity:.55;
+
+    transform:
+        translateX(70px)
+        rotateY(18deg)
+        scale(.82);
+
+    filter:blur(1.5px);
+}
+
+/* CENTER */
+
+.gallery-card.center{
+
+    width:480px;
+
+    height:620px;
+
+    transform:
+        translateY(-10px)
+        scale(1);
+
+    z-index:10;
+
+    animation:floatCard 5s ease-in-out infinite;
+}
+
+/* RIGHT */
+
+.gallery-card.right{
+
+    width:280px;
+
+    height:420px;
+
+    opacity:.55;
+
+    transform:
+        translateX(-70px)
+        rotateY(-18deg)
+        scale(.82);
+
+    filter:blur(1.5px);
+}
+
+/* BUTTONS */
+
+.gallery-btn{
+
+    width:60px;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:var(--navy);
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+    transition:.35s;
+
+    position:absolute;
+
+    z-index:20;
+}
+
+.gallery-btn:hover{
+
+    background:var(--navy);
+
+    color:white;
+
+    transform:scale(1.08);
+}
+
+.gallery-btn.prev{
+
+    left:0;
+}
+
+.gallery-btn.next{
+
+    right:0;
+}
+
+/* DOTS */
+
+.gallery-dots{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:35px;
+}
+
+.dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#cfd8e6;
+
+    transition:.35s;
+}
+
+.dot.active{
+
+    width:34px;
+
+    border-radius:30px;
+
+    background:var(--navy);
+}
+
+/* FLOATING */
+
+@keyframes floatCard{
+
+    0%{
+
+        transform:
+            translateY(-10px)
+            scale(1);
+    }
+
+    50%{
+
+        transform:
+            translateY(-22px)
+            scale(1.02);
+    }
+
+    100%{
+
+        transform:
+            translateY(-10px)
+            scale(1);
+    }
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+.gallery-carousel{
+
+    gap:20px;
+
+    height:500px;
+}
+
+.gallery-card.left,
+.gallery-card.right{
+
+    width:170px;
+
+    height:250px;
+}
+
+.gallery-card.center{
+
+    width:300px;
+
+    height:420px;
+}
+
+.gallery-btn{
+
+    width:46px;
+
+    height:46px;
+
+    font-size:22px;
+}
+
+}
+
+@media(max-width:700px){
+
+.gallery-card.left,
+.gallery-card.right{
+
+    display:none;
+}
+
+.gallery-card.center{
+
+    width:90vw;
+
+    max-width:340px;
+
+    height:450px;
+}
+
+.gallery-btn.prev{
+
+    left:15px;
+}
+
+.gallery-btn.next{
+
+    right:15px;
+}
+
+}
+
+
+/* ---------- FAQ ---------- */
+.faq-container{
+    max-width:800px;
+    margin:auto;
+}
+
+.faq-question{
+    width:100%;
+    text-align:left;
+    padding:20px;
+    margin-bottom:10px;
+    border:none;
+    border-radius:16px;
+    background:var(--white);
+    font-size:16px;
+    font-weight:600;
+    color:var(--navy);
+    cursor:pointer;
+    box-shadow:var(--shadow);
+}
+
+.faq-answer{
+    display:none;
+    padding:20px;
+    margin-bottom:20px;
+    background:var(--mist);
+    border-radius:16px;
+}
+
+/* ---------- BLOGS ---------- */
+
+.blog-hero{
+    padding:110px 32px 20px;
+}
+
+#blogContent p{
+    margin-bottom: 24px;
+    line-height: 1.9;
+}
+
+#blogContent li{
+    margin-bottom: 14px;
+    line-height: 1.9;
+}
+
+#blogContent ul,
+#blogContent ol{
+    margin: 20px 0;
+    padding-left: 30px;
+}
+
+#blogContent ul{
+    margin: 25px 0;
+    padding-left: 35px;
+}
+
+#blogContent li{
+    margin-bottom: 16px;
+    line-height: 1.9;
+}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:1080px){
+    .quicklinks{grid-template-columns:repeat(3,1fr);}
+    .services-grid{grid-template-columns:repeat(3,1fr);}
+    .team-grid{grid-template-columns:repeat(2,1fr);}
+    .test-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-grid{grid-template-columns:repeat(2,1fr);}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;max-width:380px;margin:0 auto;}
+    .about-strip{grid-template-columns:1fr;}
+    .book-wrap{grid-template-columns:1fr;}
+  }
+  @media(max-width:720px){
+    .nav-links{display:none;}
+    .burger{display:block;}
+    .quicklinks{grid-template-columns:repeat(2,1fr);}
+    .services-grid{grid-template-columns:repeat(2,1fr);}
+    .team-grid{grid-template-columns:1fr;}
+    .test-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr 1fr;}
+    .form-row{grid-template-columns:1fr;}
+    section{padding:80px 20px;}
+    .contact-block{padding:44px 26px;margin:0 16px 40px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo" onclick="goTo('home')">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8 2 5 5 5 9c0 3 1.2 4.4 1.7 7.4.3 1.9.6 4.6 2.3 4.6 1.9 0 1.6-3.6 3-3.6s1.1 3.6 3 3.6c1.7 0 2-2.7 2.3-4.6C17.8 13.4 19 12 19 9c0-4-3-7-7-7z" stroke="#0E2A47" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </span>
+      Phoenix Dental Solutions
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><button onclick="goTo('home')" data-page="home">Home</button></li>
+      <li><button onclick="goTo('services')" data-page="services">Services</button></li>
+      <li><button onclick="goTo('team')" data-page="team">Meet the Team</button></li>
+      <li><button onclick="goTo('testimonials')" data-page="testimonials">Testimonials</button></li>
+      <li><button onclick="goTo('gallery')" data-page="gallery">Gallery</button></li>
+      <li><button onclick="goTo('blog')" data-page="blog">Blog</button></li>
+      <li><button onclick="goTo('faq')" data-page="faq">FAQs</button></li>
+      <li><button onclick="goTo('contact')" data-page="contact">Contact</button></li>
+    </ul>
+    <button class="nav-cta" onclick="goTo('book')">Book Online</button>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<div class="page active" id="page-home">
+
+  <section class="hero" style="padding-top:140px;">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="hero-grid">
+      <div class="reveal in">
+        <div class="eyebrow">Boutique Dental Care</div>
+        <h1>A radiant smile, <em>crafted</em> with care.</h1>
+        <p class="lead">Phoenix Dental Solutions blends gentle, modern dentistry with a calm, luxurious setting — so every visit feels like a moment of restoration, not a chore.</p>
+        <div class="btn-row">
+          <button class="btn-primary" onclick="goTo('book')">Book an Appointment →</button>
+          <button class="btn-secondary" onclick="goTo('services')">Explore Services</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <img src="logo/mom logo.png"
+           alt="Phoenix Dental Solutions Logo"
+           class="hero-logo">
+        </div>
+        <div class="stat-chip chip-1">
+          <span class="num">20+</span><span class="lbl">Years Trusted</span>
+        </div>
+        <div class="stat-chip chip-2">
+          <span class="num">4.9★</span><span class="lbl">Patient Rating</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="smile-divider" viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0 10 Q300 60 600 10 T1200 10"/></svg>
+
+  <!-- Quick links to other pages -->
+  <section style="padding-top:40px;">
+    <div class="inner">
+      <div class="sec-head reveal">
+        <div class="eyebrow" style="justify-content:center;">Find your way</div>
+        <h2>Everything you need, in one place</h2>
+        <p>From treatments to your care team, booking, and reviews — explore Phoenix Dental Solutions at a glance.</p>
+      </div>
+      <div class="quicklinks reveal">
+        <div class="qcard" onclick="goTo('services')">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9.5-9C0.5 7.5 3 3.5 7 4c2 .2 3.5 1.5 5 3.5C13.5 5.5 15 4.2 17 4c4-.5 6.5 3.5 4.5 8-2.5 4.5-9.5 9-9.5 9z" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <h4>Services</h4>
+          <p>12 treatments crafted for comfort and longevity.</p>
+          <span class="go">View Services →</span>
+        </div>
+        <div class="qcard" onclick="goTo('team')">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke-width="1.5"/><path d="M5 20c1.2-4 3.8-6 7-6s5.8 2 7 6" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <h4>Meet the Team</h4>
+          <p>Six specialists dedicated to your smile.</p>
+          <span class="go">Meet Them →</span>
+        </div>
+        <div class="qcard" onclick="goTo('book')">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2.5" stroke-width="1.5"/><path d="M4 9.5h16M8 3.5v3M16 3.5v3" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <h4>Book Online</h4>
+          <p>Reserve your visit in under two minutes.</p>
+          <span class="go">Book Now →</span>
+        </div>
+        <div class="qcard" onclick="goTo('testimonials')">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 17.3 6.2 21l1.5-6.6L2.5 9.7l6.7-.6L12 3l2.8 6.1 6.7.6-5.2 4.7 1.5 6.6z" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+          <h4>Testimonials</h4>
+          <p>Real words from our happy patients.</p>
+          <span class="go">Read Stories →</span>
+        </div>
+        <div class="qcard" onclick="goTo('contact')">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6.5 12 13l9-6.5" stroke-width="1.5" stroke-linecap="round"/><rect x="3" y="5" width="18" height="14" rx="2.5" stroke-width="1.5"/></svg></div>
+          <h4>Contact Us</h4>
+          <p>Reach our front desk anytime, any way.</p>
+          <span class="go">Get in Touch →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / why us strip -->
+  <section style="background:var(--mist);">
+    <div class="inner about-strip">
+      <div class="reveal">
+        <div class="about-visual">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 5 5 5 9c0 3 1.2 4.4 1.7 7.4.3 1.9.6 4.6 2.3 4.6 1.9 0 1.6-3.6 3-3.6s1.1 3.6 3 3.6c1.7 0 2-2.7 2.3-4.6C17.8 13.4 19 12 19 9c0-4-3-7-7-7z" stroke="#0E2A47" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="eyebrow">Why Phoenix Dental</div>
+        <h2 style="font-size:clamp(28px,3.4vw,40px);margin-bottom:18px;">Dentistry, reimagined as self-care</h2>
+        <p style="color:#557191;line-height:1.75;">We pair advanced clinical technique with an unhurried, spa-like atmosphere — because a healthy smile should never feel clinical.</p>
+        <div class="about-points">
+          <div class="about-point">
+            <div class="dot"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><h5>Gentle, modern technique</h5><p>Minimally invasive care designed around comfort.</p></div>
+          </div>
+          <div class="about-point">
+            <div class="dot"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><h5>A team you'll recognize by name</h5><p>Six dedicated specialists, one continuous relationship.</p></div>
+          </div>
+          <div class="about-point">
+            <div class="dot"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><h5>Transparent, easy booking</h5><p>See real availability and confirm online in minutes.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- services preview -->
+  <section>
+    <div class="inner">
+      <div class="sec-head reveal">
+        <div class="eyebrow" style="justify-content:center;">A Glimpse of Our Care</div>
+        <h2>Treatments built around you</h2>
+        <p>A preview of our twelve services — see the full list for details.</p>
+      </div>
+      <div class="services-grid reveal" id="homeServicesPreview"></div>
+      <div style="text-align:center;margin-top:46px;">
+        <button class="btn-secondary" onclick="goTo('services')">View All 12 Services →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- team preview -->
+  <section style="background:var(--mist);">
+    <div class="inner">
+      <div class="sec-head reveal">
+        <div class="eyebrow" style="justify-content:center;">Your Care Team</div>
+        <h2>Six specialists, one smile-focused mission</h2>
+      </div>
+      <div class="team-grid reveal" id="homeTeamPreview"></div>
+      <div style="text-align:center;margin-top:46px;">
+        <button class="btn-secondary" onclick="goTo('team')">Meet the Full Team →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- testimonial preview -->
+  <section>
+    <div class="inner">
+      <div class="sec-head reveal">
+        <div class="eyebrow" style="justify-content:center;">Patient Stories</div>
+        <h2>Loved by the smiles we've cared for</h2>
+      </div>
+      <div class="test-grid reveal" id="homeTestPreview"></div>
+      <div style="text-align:center;margin-top:46px;">
+        <button class="btn-secondary" onclick="goTo('testimonials')">Read All Testimonials →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- booking CTA -->
+  <section style="padding-top:30px;padding-bottom:60px;">
+    <div class="inner" style="background:linear-gradient(160deg,var(--navy),var(--deep-blue));border-radius:32px;padding:60px 50px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;color:white;box-shadow:var(--shadow);" class="reveal">
+      <div>
+        <h2 style="color:white;font-size:clamp(24px,3vw,34px);margin-bottom:10px;">Ready for your best smile yet?</h2>
+        <p style="color:var(--powder);font-size:15px;">Book online in under two minutes — no phone tag required.</p>
+      </div>
+      <button class="contact-cta" onclick="goTo('book')">Book Online →</button>
+    </div>
+  </section>
+
+  <div id="contactSlot-home"></div>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<div class="page" id="page-services">
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center;">Our Services</div>
+    <h1>Range of Treatment Facilitiess</h1>
+    <p>Every procedure performed with precision, comfort, and a gentle touch.</p>
+  </section>
+  <section style="padding-top:20px;">
+    <div class="inner">
+      <div class="services-grid reveal" id="fullServicesGrid"></div>
+    </div>
+  </section>
+  <div id="contactSlot-services"></div>
+</div>
+
+<!-- ================= TEAM ================= -->
+<div class="page" id="page-team">
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center;">Meet the Team</div>
+    <h1>The six hands behind every smile</h1>
+    <p>Experienced, warm, and endlessly detail-oriented — meet the people you'll see at every visit.</p>
+  </section>
+  <section style="padding-top:20px;">
+    <div class="inner">
+      <div class="team-grid reveal" id="fullTeamGrid"></div>
+    </div>
+  </section>
+  <div id="contactSlot-team"></div>
+</div>
+
+<!-- ================= BOOK ONLINE ================= -->
+<div class="page" id="page-book">
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center;">Book Online</div>
+    <h1>Reserve your visit</h1>
+    <p>Pick a service, choose a time, and we'll confirm by phone or email within the day.</p>
+  </section>
+  <section style="padding-top:10px;">
+    <div class="inner book-wrap">
+      <div class="book-info reveal">
+        <h2>How booking works</h2>
+        <p>A simple, three-step process designed to get you on the calendar without the back-and-forth.</p>
+        <div class="book-steps">
+          <div class="book-step">
+            <div class="n">1</div>
+            <div><h5>Tell us what you need</h5><p>Select a service and preferred dentist.</p></div>
+          </div>
+          <div class="book-step">
+            <div class="n">2</div>
+            <div><h5>Pick a date & time</h5><p>Choose from real, available slots.</p></div>
+          </div>
+          <div class="book-step">
+            <div class="n">3</div>
+            <div><h5>We confirm</h5><p>Our front desk reaches out to finalize details.</p></div>
+          </div>
+        </div>
+      </div>
+      <form class="book-form reveal" onsubmit="handleBooking(event)">
+        <div class="form-row">
+          <div class="field"><label>Full Name</label><input type="text" placeholder="XXXXX XXXX" required></div>
+          <div class="field"><label>Phone Number</label><input type="tel" placeholder="+91XXXXXXXXXX" required></div>
+        </div>
+        <div class="form-row full">
+          <div class="field"><label>Email Address</label><input type="email" placeholder="XXXXXXX@gmail.com" required></div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label>Service</label>
+            <select required>
+              <option value="">Select a service</option>
+              <option>Treatment for Caries</option>
+              <option>Root Canal Treatment (RCT)</option>
+              <option>Tooth Whitening</option>
+              <option>Invisible Aligners</option>
+              <option>Extraction</option>
+              <option>Other (see Services page)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Preferred Dentist</label>
+            <select>
+              <option value="">No preference</option>
+              <option>Dr. Deepika Mishra</option>
+              <option>Dr. Sonam Chaudhary</option>
+              <option>Dr. Ambika Luthra</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Preferred Date</label><input type="date" required></div>
+          <div class="field"><label>Preferred Time</label><input type="time" required></div>
+        </div>
+        <div class="form-row full">
+          <div class="field"><label>Notes (optional)</label><textarea rows="3" placeholder="Anything we should know before your visit?"></textarea></div>
+        </div>
+        <button class="submit-btn" type="submit">Request Appointment</button>
+        <p class="form-note">This is a placeholder form — no data is sent. Connect it to your booking system later.</p>
+      </form>
+    </div>
+  </section>
+  <div id="contactSlot-book"></div>
+</div>
+
+<!-- ================= TESTIMONIALS ================= -->
+<div class="page" id="page-testimonials">
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center;">Testimonials</div>
+    <h1>Stories from our patients</h1>
+    <p>Placeholder reviews — swap in real patient feedback anytime.</p>
+  </section>
+  <section style="padding-top:20px;">
+    <div class="inner">
+      <div class="test-grid reveal" id="fullTestGrid"></div>
+    </div>
+  </section>
+  <div id="contactSlot-testimonials"></div>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<div class="page" id="page-contact">
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center;">Contact Us</div>
+    <h1>We'd love to hear from you</h1>
+    <p>Reach out by phone, message, or visit us in person — details are below</p>
+  </section>
+  <section style="padding-top:0;">
+    <div class="inner">
+      <div class="services-grid" style="grid-template-columns:repeat(2,1fr);gap:24px;max-width:760px;margin:0 auto 30px;">
+        <div class="service-card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1.1.4 2.2.7 3.2a2 2 0 0 1-.5 2.1L8 10.3a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c1 .4 2.1.6 3.2.7a2 2 0 0 1 1.4 2z" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <h4>Call Us</h4>
+          <p>+91 9891602477<br>Monday–Saturday<br>Morning: 10:30 AM - 1:30 PM<br>Evening: 6:00 PM - 8:00 PM<br>3:00 PM - 5:00 PM by appointment</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6.5 12 13l9-6.5" stroke-width="1.5" stroke-linecap="round"/><rect x="3" y="5" width="18" height="14" rx="2.5" stroke-width="1.5"/></svg></div>
+          <h4>Email Us</h4>
+          <p>drdeepikamishra710@gmail.com</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M21 10.5c0 6-9 11-9 11s-9-5-9-11a9 9 0 1 1 18 0z" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="10.5" r="2.5" stroke-width="1.5"/></svg></div>
+          <h4>Visit Us</h4>
+          <p>Phoenix Dental Solutions<br>I-606, Alpha 2, Greater Noida, Uttar Pradesh</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.4 8.4 0 0 1-9.3 8.4 8.5 8.5 0 0 1-3.8-1.1L3 20l1.2-4.7a8.4 8.4 0 0 1-1.1-4.3A8.5 8.5 0 1 1 21 11.5z" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <h4>WhatsApp</h4>
+          <p>+91 9891602477</p>
+        </div>
+      </div>
+    </div>
+    <div id="contactSlot-contact"></div>
+  </section>
+</div>
+<!-- ================= GALLERY ================= -->
+
+<div class="page" id="page-gallery">
+<section class="page-hero">
+    <div class="eyebrow" style="justify-content:center;">
+        Gallery
+    </div>
+
+    <h1>Transformations & Clinic Moments</h1>
+
+    <p>
+        A glimpse into Phoenix Dental Solutions and the smiles we've created.
+    </p>
+</section>
+
+<section class="gallery-section">
+
+    <div class="gallery-wrapper">
+
+        <button class="gallery-btn prev">
+            &#10094;
+        </button>
+
+        <div class="gallery-carousel">
+
+            <div class="gallery-card left">
+                <img id="leftImg" src="" alt="">
+            </div>
+
+            <div class="gallery-card center">
+                <img id="centerImg" src="" alt="">
+            </div>
+
+            <div class="gallery-card right">
+                <img id="rightImg" src="" alt="">
+            </div>
+
+        </div>
+
+        <button class="gallery-btn next">
+            &#10095;
+        </button>
+
+    </div>
+
+    <div class="gallery-dots" id="galleryDots">
+
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+
+    </div>
+
+</section>
+
+<div id="contactSlot-gallery"></div>
+
+</div>
+
+<!-- ================= BLOGS ================= -->
+
+<div class="page" id="page-blog">
+  <section class="page-hero blog-hero">
+    <div class="eyebrow" style="justify-content:center;">Blog</div>
+    <h1>Dental Insights & Tips</h1>
+    <p>Educational content from our team.</p>
+  </section>
+
+  <section style="padding-top:80px;">
+    <div class="inner">
+        <div class="blog-grid reveal" id="fullBlogGrid"></div> 
+    </div>
+  </section>
+
+  <div id="contactSlot-blog"></div>
+</div>
+
+<!-- ================= FAQs ================= -->
+
+<div class="page" id="page-faq">
+
+    <section class="page-hero">
+        <div class="eyebrow" style="justify-content:center;">
+            FAQs
+        </div>
+
+        <h1>Frequently Asked Questions</h1>
+
+        <p>
+            Everything patients commonly ask before their visit.
+        </p>
+    </section>
+
+    <section>
+        <div class="inner">
+
+            <div class="faq-container reveal"
+                 id="fullFaqGrid">
+            </div>
+
+        </div>
+    </section>
+
+    <div id="contactSlot-faq"></div>
+
+</div>
+
+<!-- ================= ARTICLES ================= -->
+
+<div class="page" id="page-article">
+
+<section class="page-hero">
+    <div class="eyebrow"
+         style="justify-content:center;">
+         Blog
+    </div>
+
+    <h1 id="blogTitle"></h1>
+
+    <p id="blogSubtitle"></p>
+</section>
+
+<section>
+<div class="inner" style="
+max-width:900px;
+line-height:1.9;
+">
+
+<div id="blogContent"></div>
+
+<hr style="margin:60px 0;">
+
+<div>
+    <h4 id="blogAuthor"></h4>
+
+    <p>
+        <span id="blogRole"></span>
+        •
+        <span id="blogDate"></span>
+    </p>
+</div>
+
+</div>
+</section>
+
+<div id="contactSlot-article"></div>
+
+</div>
+
+<script>
+/* ================= DATA ================= */
+const services = [
+  {name:"Dental implants", desc:"Metal Crown, Metal fused to porcelain crown, Zirconia crown. Complete and partial removable dentures, Flexible dentures", icon:'<path d="M12 3c-3 0-5 2-5 5 0 4 2 5 2 9 0 1.5 1 2 1.5 2s1-1 1.5-2c.3-.7.5-1.3 1-1.3s.7.6 1 1.3c.5 1 1 2 1.5 2s1.5-.5 1.5-2c0-4 2-5 2-9 0-3-2-5-5-5z" stroke-width="1.3" stroke-linejoin="round"/>'},
+  {name:"Orthodontics", desc:"Treatment with braces (metallic and ceramic)", icon:'<rect x="5" y="8" width="14" height="8" rx="4" stroke-width="1.5"/>'},
+  {name:"Laser Dentistry", desc:"Laser treatment of gummy smile, treatment of gingival enlargement, treatment of tongue tie, Crown lengthening by laser", icon:'<rect x="7" y="4" width="10" height="16" rx="3" stroke-width="1.5"/>'},
+  {name:"Tooth whitening", desc:"In-Office and night time bleaching", icon:'<circle cx="12" cy="9" r="4" stroke-width="1.5"/><path d="M6 21c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke-width="1.5" stroke-linecap="round"/>'},
+  {name:"Root Canal Treatment", desc:"Single sitting/multiple sitting", icon:'<path d="M12 2v4M6.3 6.3l2.8 2.8M2 12h4M6.3 17.7l2.8-2.8M12 18v4M14.9 14.9l2.8 2.8M18 12h4M14.9 9.1l2.8-2.8" stroke-width="1.5" stroke-linecap="round"/>'},
+  {name:"Cosmetic dental treatment", desc:"Gap closure in anterior teeth, Smile makeover, Dental jewelry management of fluorosis, Veneers, Cosmetic buildup of fractured teeth, Cosmetic contouring of teeth", icon:'<rect x="4" y="9" width="16" height="6" rx="3" stroke-width="1.5"/>'},
+  {name:"Treatment for Caries", desc:"Restoration for kids and elderly , cosmetic restoration , fluoride restorations , temporary restoration", icon:'<path d="M12 21s-7-4.5-9.5-9C0.5 7.5 3 3.5 7 4c2 .2 3.5 1.5 5 3.5C13.5 5.5 15 4.2 17 4c4-.5 6.5 3.5 4.5 8-2.5 4.5-9.5 9-9.5 9z" stroke-width="1.5" stroke-linejoin="round"/>'},
+  {name:"Crown & Bridge/ Other prosthetics", desc:"Metal Crown, Metal fused to porcelain crown, Zirconia crown. Complete and partial removable dentures, Flexible dentures", icon:'<path d="M12 2c-3 4-3 6 0 9s3 5 0 9" stroke-width="1.5" stroke-linecap="round"/>'},
+  {name:"Treatment of sports injuries", desc:"Avulsion, Luxation, Fracture", icon:'<path d="M12 2 2 21h20L12 2z" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 9v5" stroke-width="1.5" stroke-linecap="round"/>'},
+  {name:"Screening for oral cancer", desc:"Swab and punch biopsies done for screening of oral cancer", icon:'<path d="M3 9l9-5 9 5-9 5-9-5z" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 9v6l9 5 9-5V9" stroke-width="1.5" stroke-linejoin="round"/>'},
+  {name:"Extractions", desc:"Simple extraction, surgical removal of impacted teeth, surgical removal of root pieces extractions for pediatric patients", icon:'<path d="M4 14c0-5 3.5-9 8-9s8 4 8 9-3.5 7-8 7-8-2-8-7z" stroke-width="1.5"/>'},
+  {name:"Apicoectomy", desc:"Laser Treatment for periapical loss", icon:'<path d="M12 3v18M7 8h10M9 13h6" stroke-width="1.5" stroke-linecap="round"/>'}
+];
+
+const team = [
+  {name:"Dr. Deepika Mishra", role:"General Dentist", image: "images/dr-deepika.jpeg",bio:"Dr. Deepika Mishra is the proprietor and Chief Dental Surgeon at Phoenix Dental Solutions. She completed her graduation in the year 2000 and since then has worked in various clinical and hospital settings. The gentle manner, in which she examines the patient and explains the treatment plan, puts the patient immediately at ease. She is proficient in tooth extractions, cosmetic restorations, root canal treatment, prosthetic dental treatment, pediatric dentistry, treatment of pyorrhea, scaling root planing etc. She can also handle any kind of emergency dental treatment if required. She has a passion for dentistry and is constantly focused on upgrading her skills for better patient experience.", icon:'<circle cx="12" cy="8" r="3.6" stroke-width="1.5"/><path d="M5 20c1.2-4 3.8-6 7-6s5.8 2 7 6" stroke-width="1.5" stroke-linecap="round"/>'},
+  {name:"Dr. Shweta Bansal", role:"Periodontist", image: "images/dr-shweta.jpeg", bio:"Dr. Shweta is an expert in the field of Periodontics and provides a solution for all kinds of problems associated with gums. These include, flap surgeries( treatment of periodontal pockets), root coverage, crown lengthening, gingivectomy, frenentomy etc. She performs laser treatment for gummy smile, operculectomy and deep peri apical and periodontal lesions.", icon:'<circle cx="12" cy="8" r="3.6" stroke-width="1.5"/><path d="M5 20c1.2-4 3.8-6 7-6s5.8 2 7 6" stroke-width="1.5" stroke-linecap="round"/>'},
+  {name:"Dr. Ambika Luthra", role:"Oral and Maxillofacial Surgeon", image:"", bio:"Dr. Ambika has 11 years of clinical experience in the field of oral surgery along with 4 years of academic experience. She excels in painless removal of third molars both upper and lower, retained root pieces, impacted teeth. She has been performing major and minor oral surgical procedures in geriatric and differently abled children with utmost ease. Dr. Ambika also handles cases of trauma both in the clinic and in hospital setup if required.", icon:'<circle cx="12" cy="8" r="3.6" stroke-width="1.5"/><path d="M5 20c1.2-4 3.8-6 7-6s5.8 2 7 6" stroke-width="1.5" stroke-linecap="round"/>'},
+  {name:"Dr. Shika Adana", role:"Pedodontist", image: "images/dr-shikha.jpeg", bio:"Apart from regular five years of dental education, Dr. Shikha is trained for additional three years in dealing with children and their oral health. She is well versed in child psychology which aids in execution of treatment for your kids effectively and efficiently. This simultaneously instills a positive dental attitude in the little ones.", icon:'<circle cx="12" cy="8" r="3.6" stroke-width="1.5"/><path d="M5 20c1.2-4 3.8-6 7-6s5.8 2 7 6" stroke-width="1.5" stroke-linecap="round"/>'},
+  {name:"Dr Ananya", role:"Endodontist", image:"", bio:"Dr Ananya is our visiting consultant endodontist. She is an expert in her field and performs both single sitting root canal treatment and multiple sitting root canal treatment as the case requires. Her chair side manner, immediately puts the patient at ease and patient can let go of any apprehensions. With Dr. Ananya on the team we have been able to save many teeth from extraction and consequent rehabilitation.", icon:'<circle cx="12" cy="8" r="3.6" stroke-width="1.5"/><path d="M5 20c1.2-4 3.8-6 7-6s5.8 2 7 6" stroke-width="1.5" stroke-linecap="round"/>'},
+  {name:"Dr Sonam Chaudhary", role:"Orthodontist", image: "images/dr-sonam .jpeg" ,bio:"Dr. Sonam Chaudhary completed her M.D.S in Orthodontia five years ago and since then has been associated with Phoenix Dental Solutions. She is more of a friend rather than a doctor to her mostly teenage patients. Collaborating together with her patients regarding their expectations and fears she comes up with an excellent treatment plan which is 100% patient friendly. The treatment time is quite reduced due to this reason and we are able to create a happy smile in no time.", icon:'<circle cx="12" cy="8" r="3.6" stroke-width="1.5"/><path d="M5 20c1.2-4 3.8-6 7-6s5.8 2 7 6" stroke-width="1.5" stroke-linecap="round"/>'}
+];
+
+const testimonials = [
+  {name:"Anita Singh", role:"Patient since 2021", quote:"This was my first dental treatment in many years and Dr. Mishra made me feel relaxed and calm. It was completely painless and issue free. I thoroughly recommend both Dr. Mishra and dental clinic. Excellent caring staff"},
+  {name:"Beenu Kapoor", role:"Patient since 2025", quote:"I came for tooth damaged and Dr. Deepika ma'am did nicely filling and root canal without pain thank you so much Dr. ma'am thanks to Phoenix Dental Solutions."},
+  {name:"Grirish Upreti", role:"Patient since 2024", quote:"Dr. Deepika Mishra at Phoenix Dental Solution is doing exceptional services for dental procedure. Her knowledge in the field is very good and comes with long & rich experience. She makes even the complex procedure look like very smooth and seamless. I strongly recommend her services for any dental related services"},
+  {name:"DK Gulati", role:"Patient since 2021", quote:"Great experience. Dr Deepika is having thorough knowledge of her field. Her behaviour is par excellence. I had done my RCT done earlier and I used to frighten before going to dentist because of pain etc. But this time it was painless RCT and capping. I will definitely recommend my known one for dental treatment of all kind."},
+  {name:"Muskan Kaushik", role:"Patient since 2024", quote:"Had an awesome experience with Dr Deepika....Got my filling done for two teeth,I am very much satisfied with her approach towards treatment and the service she provides... definitely recommend her fot getting your dental treatment done"},
+  {name:"Akansha Tripathi", role:"Patient since 2020", quote:"So I just Want talk about Deepika Maam. She is an excellent dentist. She is very nice person.This is a great place to go take care of your teeth.I Go for RTC seriously she did a great job, I felt that I was in good hands. She explained me very well what was going on also what is best for mee. She took the time to explain every procedure she was doing.She is the best dentist I have ever had.Thanku So Much Deepika Maam ❤️"},
+  {name:"Ranjit Monga", role: "Patient since 2018", quote: "A great experience to visit Dr Deepika after having tried out many dentists in Greater Noida. She advised against some very expensive procedures suggested by other doctors and it turned out fine! Exhibits experience and competence in her work."},
+  {name:"Sudha Trivedi", role:"Patient since 2021", quote:"Dr Deepika is a great doctor and an excellent human being , her knowledge is second to none , I am thankful to her for right guidance and wish her all the best , I strongly recommend Dr Deepika for any dental issues."},
+  {name:"Vijay Shekhar", role:"Patient since 2015", quote:"I have been availing Dr Deepika Mishra's consultation and services of her dental clinic for more than last 6 years. Dr Deepika is a combination of expertise and wisdom. She always provides sage and right advise. As a dental surgeon she is blessed with poise and dexterity."},
+  {name:"Saurabh Trivedi", role:"Patient since 2021", quote:"Dr Deepika has a great subject knowledge it was my second visit to her clinic and as always the experience was awesome... I wish her all the best and will strongly recommend her for all dental solutions."},
+  {name:"Pooja Dhawan", role:"Patient since 2019", quote:"Dr.Deepika Mishra is very knowledgeable in all aspects of dentistry.She takes the time to explain everything.She is taking care of my daughter's cavity treatment and I am very happy and pleased with her work😊"},
+  {name:"Harpal Singh", role:"Patient since 2022", quote:"Very good experience. Dr. Deepika Mishra and her staff were talented and very kind to her patients, and also had an excellent bedside manner. I would definitely recommend her to others."},
+  {name:"Rimjhim Mishra", role:"Patient since 2018", quote:"I would like to say a big thanks to all the team at Deepika Mishra dental clinic , from the charming and efficient reception staff to all the dental team. Dr Deepika's outfit are truly first class and are epitome of professionalism. Satisfied with the service."},
+  {name:"Neeru", role:"Patient since 2022", quote:"I am new at Dr. Deepika Mishra's clinic but I am rather impressed by the professionalism shown. I booked an appointment through the website and immediately got a call from reception and they confirmed my appointment."},
+  {name:"Saumya Shukla", role:"Patient since 2020", quote:"Hands down. The best clinic I have ever been too. You will pay a little more than other clinic but you will get it right the first time. From the reception to the friendly coffee and down to the dentist; simply awesome! Great customer service. Totally satisfied."},
+  {name:"Megha Varma", role:"Patient since 2023", quote:"I have been availing Dr. Deepika Mishra's consultation ans services of her dental clinic for more than last 6 years. Dr. Deepika is a combination of expertise and wisdom. She always provides sage and right advise. As a dental surgeon she is blessed with poise and dexterity."}
+];
+
+const blogs = [
+{
+    title: "Simple Steps to a Healthy Smile During Pregnancy",
+    subtitle: "A guide to smile-friendly nutrition.",
+    author: "Dr. Deepika Mishra",
+    role: "Chief Dental Surgeon",
+    date: "9 July 2026",
+    content: `
+        <p>Pregnancy is a major milestone in a women's life. It brings immense joy and anticipation for you and your entire family. However it also brings certain changes to the body which are not only limited to weight gain and increasing size of your belly. A woman is blessed with lustrous hair, glowing complexion , a soothing disposition just because she is nurturing a life within herself. The harmonal changes happening during pregnancy, also have some effects on the oral cavity. Bleeding gums and bad breadth or halitosis are some of the most common problems. A few simple habits if cultivated during this time of your joyous journey to mother hood can help in tackling these problems.
+            <ul>
+    <li>Drink plenty of water and rinse your mouth regularly.</li>
+
+    <li>Clean your tongue using a tongue cleaner or gauze.</li>
+
+    <li>Keep fennel seeds or aniseeds handy to help combat bad breath.</li>
+
+    <li>Chew parsley, basil, mint or cilantro to neutralize odors.</li>
+
+    <li>Include crunchy foods such as apples, carrots and celery.</li>
+
+    <li>Visit your dentist at least twice during pregnancy.</li>
+
+    <li>Consider professional ultrasonic cleaning at least once during pregnancy.</li>
+</ul>
+    `
+},
+{
+    title: "Teeth cleaning and whitening.",
+    subtitle: "Why you might need teeth cleaning?",
+    author: "Dr. Deepika Mishra",
+    role: "Chief Dental Surgeon",
+    date: "12 July 2026",
+    content: `
+        <p>LFirst appearances , as all of us know are very important. Keeping your teeth looking clean is one of the most important aspect of your appearance and personality. Along with giving you a beautiful smile, clean teeth will also ensure the longevity of your natural teeth.<br><br>
+
+Often people are confused between teeth cleaning and whitening. To understand the difference between these two, let us first understand the nature of stains and calculus.<br><br>
+
+A thin layer of plaque gets deposited on the surface of our teeth in the morning despite brushing once or twice in 24 hours. In people with poor oral hygiene or in some systemic conditions; this plaque hardens to form white /yellow/blackish green deposits called calculus. Continued presence of calculus in oral cavity causes bad odor, bleeding gums, and eventually tooth loss due periodontal disease. This calculus should be removed using an ultrasonic scaler when you visit your dentist at least once a year. This process is called teeth and gum cleaning in simple language. Teeth cleaning also removes certain stains caused due to smoking, tea / coffee consumption etc.<br><br>
+
+Most of the individuals are born with white / slightly yellowish teeth, depending upon the thickness of enamel which is the outermost layer of teeth or the color of dentin within.<br><br>
+
+It is possible to make the color of teeth lighter using bleaching also called teeth whitening agents. These teeth whitening systems can be take home/ night time bleach or in dental office system. Some teeth whitening procedures also use lasers.<br><br>
+
+Teeth cleaning and whitening are two separate procedures but can be performed at the same sitting with your dentist depending upon the time available and the clinical state of the gums.<br><br>
+
+Keeping your teeth clear of plaque and calculus is a very important step in maintaining a good oral hygiene. This becomes more important in certain systemic conditions like diabetes or cardiac disease.<br><br>
+
+Please visit your dentist once year for timely detection of any dental problems.<br><br>
+
+</p>
+    `
+},
+
+{
+    title: "Dental implants: procedure , time required, prognosis.",
+    subtitle: "How do Dental Implants work?",
+    author: "Dr. Deepika Mishra",
+    role: "Chief Dental Surgeon",
+    date: "12 July 2026",
+    content: `
+        <p>Dental implants are considered standard procedure for replacement of missing teeth today. However good gum condition and adequate bone support are a prerequisite for a successful implant surgery.<br><br>
+
+Usually in the first consultation with your dental surgeon, he or she will assess the overall condition of the patient, gum condition and bone density on the region where implant is to be placed.<br><br>
+
+In many cases tooth which needs to be replaced first requires extraction. Implants can either be placed on the same day as extraction with anyone graft or after a gap of 5 weeks which will allow time for bone regeneration.<br><br>
+
+Once adequate, strong bone is present,the site is ready for implant. At the implant placement appointment, the dental implant is placed into the bone with help of special tools and drills.<br><br>
+
+A “healing cap” is then placed over the implant , the gum stitched up and the healing phase begins.<br><br>
+
+Healing time can be anywhere between 2 to 6 months. During this time implant becomes integrated to the bone.<br><br>
+
+Implant placement surgery take about 30 to 45 minutes and is done under local anaesthesia. Patient does not feel pain during the surgery. After the effect of anaesthesia wears off, you may feel slight pain which is controlled by medication.<br><br>
+
+After the surgeon has checked that the implant has integrated into the bone, the healing cap is removed and a prosthetic component is connected to the dental implant via a screw called “abutment”.<br><br>
+
+The dentist will take an impression (mold) of this abutment in the mouth and will have the implant crown custom-made to fit.<br><br>
+
+The implant crown is either cemented on secured with a screw to the abutment.<br><br>
+
+Follow up care is very necessary post implant placement. Excessive biting forces if placed on the implant, can cause inflammation in the surrounding region and eventual loss of implant if left untreated.<br><br>
+
+Routine maintenance care post implant surgery requires brushing and flossing to keep food debris and plaque away.<br><br>
+
+Soft and hard calcified deposits are removed during your visit to the dentist. Also dental x-ray of the region where implant is placed is taken. If needed, bite is adjusted to ensure that the implant does not sustain heavy biting forces.<br><br>
+
+With maintenance of good oral hygiene and regular check-ups to avoid infections most of the implants are successful.<br><br>
+
+</p>
+    `
+},
+
+{
+    title: "Dental implants: The latest way to replace missing tooth.",
+    subtitle: "More on dental implants",
+    author: "Dr. Deepika Mishra",
+    role: "Chief Dental Surgeon",
+    date: "12 July 2026",
+    content: `
+        <p>Although we have 32 teeth in our oral cavity, each of these are important and loosing even one of these can cause difficulty in chewing food and other associated problems. Latest and the most efficient teeth replacement technique is Dental Implants.<br><br>A dental implant is a titanium post (like a tooth root) that is surgically positioned into the jaw bone beneath the gum line. It allows your dentist to mount a replacement teeth or a bridge in that area.<br><br> Implants provide stable support for artificial teeth.<br><br> Replacement of missing teeth by implants rather than bridge prevents grinding of adjacent teeth and subsequent sensitivity / or need for root canal treatment in them.<br><br> In a person having healthy gums and adequate bone support, implant being a success is more than in case of poor gingival condition.<br><br> Some of these problems like poor bone density can be overcome by bone grafts.<br><br> Meticulous oral hygiene and regular dental visits are critical to long term success of dental implants.p>
+    `
+}
+];
+
+const faqs = [
+{
+    question: "How often should I visit the dentist?",
+    answer: "Most patients benefit from a dental checkup every six months."
+},
+
+{
+    question: "Do dental cleanings hurt?",
+    answer: "Routine cleanings are generally painless and comfortable."
+},
+
+{
+    question: "Do you accept walk-ins?",
+    answer: "Emergency walk-ins are accommodated whenever possible."
+},
+
+{
+    question: "Do you treat children?",
+    answer: "Yes, we provide dental care for children of all ages."
+},
+
+{
+    question: "How long does teeth whitening last?",
+    answer: "Results typically last from six months to two years."
+},
+
+{
+    question: "5 signs you should book a dental appointment",
+    answer: "Though there are many diseases of gum and teeth , which require visit to a dentist, the following problems need to be addressed immediately:<br>Bleeding gums<br>Sensitivity in teeth<br>Swelling in gums<br>Pain in tooth at night<br>Crowding of teeth in children"
+},
+
+{
+    question: "⁠⁠Braces VS Aligners",
+    answer: " Aligners are better for discretion and comfort while braces are better for complex orthodontics and cases where patients struggle with compliance"
+},
+
+{
+    question: "Foods that help keep teeth healthy",
+    answer: "Raw fruits and vegetables help to keep  teeth and gums healthy. Carbohydrate rich food and aereted drinks should be avoided."
+},
+
+{
+    question: "How to overcome dental anixety?",
+    answer: "Dentists accomodate patients with anxiety regarding dental treatments. Discuss your issues and agree on a stop sign. Regulate breathing and listening to calming music while treatment procedure also help."
+},
+
+{
+    question: "How Often should you visit your dentist?",
+    answer: "⁠Every 6 months for routine check up and cleaning. Diabetics and patients with active gum diseases require  to visit dentist every 3-4 months."
+},
+
+{
+    question: "What payment methods do you accept?",
+    answer: "Cash, cards, UPI and most insurance providers are accepted."
+}
+];
+
+const galleryImages = [
+    "Gallery/images 1.jpeg",
+    "Gallery/images 2.jpeg",
+    "Gallery/images 3.jpeg",
+    "Gallery/images 4.jpeg",
+    "Gallery/images 5.jpeg",
+    "Gallery/images 6.jpeg",
+    "Gallery/images 7.jpeg",
+    "Gallery/images 8.jpeg",
+    "Gallery/images 9 .jpeg",
+    "Gallery/images 10.jpeg",
+    "Gallery/images 11 .jpeg",
+    "Gallery/images 12.jpeg",
+    "Gallery/images 13 .jpeg",
+    "Gallery/images 14.jpeg",
+    "Gallery/images 15.jpeg",
+    "Gallery/images 16.jpeg",
+    "Gallery/images 17.jpeg",
+    "Gallery/images 18.jpeg",
+    "Gallery/images 19.jpeg",
+    "Gallery/images 20.jpeg",
+    "Gallery/images 21 .jpeg",
+    "Gallery/images 22 .jpeg",
+    "Gallery/images 23.jpeg"
+    
+];
+
+const starSVG = '<svg viewBox="0 0 24 24"><path d="M12 17.3 6.2 21l1.5-6.6L2.5 9.7l6.7-.6L12 3l2.8 6.1 6.7.6-5.2 4.7 1.5 6.6z"/></svg>';
+
+function serviceCard(s,i){
+  return `<div class="service-card reveal">
+    <div class="service-num">0${i+1<10?'0'+(i+1):(i+1)}`.replace('000','0')+`</div>
+    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E2A47">${s.icon}</svg></div>
+    <h4>${s.name}</h4>
+    <p>${s.desc}</p>
+  </div>`;
+}
+function teamCard(t){
+  return `<div class="team-card reveal">
+   <div class="team-photo">
+    ${
+        t.image
+        ? `<img src="${t.image}" alt="${t.name}">`
+        : `<svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 12c2.8 0 5-2.2 5-5S14.8 2 12 2 7 4.2 7 7s2.2 5 5 5Zm0 2c-4.2 0-8 2.1-8 5v1h16v-1c0-2.9-3.8-5-8-5Z"
+              stroke="currentColor"
+              stroke-width="1.5"/>
+           </svg>`
+    }
+</div>
+    <div class="team-info">
+      <h4>${t.name}</h4>
+      <div class="role">${t.role}</div>
+      <p>${t.bio}</p>
+    </div>
+  </div>`;
+}
+function testCard(t){
+  return `<div class="test-card reveal">
+    <div class="stars">${starSVG.repeat(5)}</div>
+    <p class="quote">"${t.quote}"</p>
+    <div class="test-person">
+      <div class="test-avatar">${t.name.charAt(0)}</div>
+      <div><h5>${t.name}</h5><span>${t.role}</span></div>
+    </div>
+  </div>`;
+}
+
+function blogCard(blog, index){
+    return `
+    <div class="service-card reveal"
+         onclick="openBlog(${index})"
+         style="cursor:pointer;">
+
+        <h4>${blog.title}</h4>
+        <p>${blog.subtitle}</p>
+        <div style="
+            margin-top:16px;
+            color:var(--sky);
+            font-weight:600;
+            font-size:14px;">
+            Read Article →
+        </div>
+    </div>
+    `;
+}
+
+function openBlog(index){
+    const blog = blogs[index];
+    document.getElementById('blogTitle').innerText = blog.title;
+    document.getElementById('blogSubtitle').innerText = blog.subtitle;
+    document.getElementById('blogContent').innerHTML = blog.content;
+    document.getElementById('blogAuthor').innerText = blog.author;
+    document.getElementById('blogRole').innerText = blog.role;
+    document.getElementById('blogDate').innerText = blog.date;
+    goTo('article');
+}
+
+function faqCard(faq){
+    return `
+        <button class="faq-question">
+            ${faq.question}
+        </button>
+
+        <div class="faq-answer">
+            ${faq.answer}
+        </div>
+    `;
+}
+
+document.getElementById('homeServicesPreview').innerHTML = services.slice(0,4).map(serviceCard).join('');
+document.getElementById('fullServicesGrid').innerHTML = services.map(serviceCard).join('');
+document.getElementById('homeTeamPreview').innerHTML = team.slice(0,3).map(teamCard).join('');
+document.getElementById('fullTeamGrid').innerHTML = team.map(teamCard).join('');
+document.getElementById('homeTestPreview').innerHTML = testimonials.slice(0,3).map(testCard).join('');
+document.getElementById('fullTestGrid').innerHTML = testimonials.map(testCard).join('');
+document.getElementById('fullBlogGrid').innerHTML =  blogs.map(blogCard).join('');
+document.getElementById('fullFaqGrid').innerHTML = faqs.map(faqCard).join('');
+
+/* ================= CONTACT BLOCK (repeated on every page) ================= */
+const contactHTML = `
+<section style="padding-top:30px;">
+  <div class="contact-block reveal">
+    <div class="blob" style="width:300px;height:300px;top:-80px;right:-60px;"></div>
+    <div class="contact-inner">
+      <div class="contact-top">
+        <div>
+          <h3>Let's keep your smile in great hands.</h3>
+          <p>Reach out anytime — our front desk team responds within one business day.</p>
+        </div>
+        <button class="contact-cta" onclick="goTo('book')">Book an Appointment →</button>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-col">
+          <h6>Phone & WhatsApp</h6>
+          <a href="tel:+919891602477">+91 9891602477</a>
+          <a href="https://wa.me/919891602477" target="_blank">WhatsApp: +91 9891602477</a>
+        </div>
+        <div class="contact-col">
+          <h6>Email</h6>
+          <a href="mailto:drdeepikamishra710@gmail.com">drdeepikamishra710@gmail.com</a>
+        </div>
+        <div class="contact-col">
+          <h6>Visit</h6>
+          <p>Phoenix Dental Solutions<br>I-606, Alpha 2, Greater Noida, Uttar Pradesh</p>
+           <a
+        href="https://maps.app.goo.gl/ysZhcotU2asKpbgh8"
+        target="_blank">
+
+        Open in Google Maps ↗
+
+    </a>
+          <p>Monday–Saturday<br>Morning: 10:30 AM - 1:30 PM<br>Evening: 6:00 PM - 8:00 PM<br>3:00 PM - 5:00 PM by appointment</p>
+        </div>
+        <div class="contact-col">
+          <h6>Follow Us</h6>
+          <div class="social-row">
+            <a href="https://facebook.com/phoenixdentalsolution" target="_blank" title="Facebook"><svg viewBox="0 0 24 24" fill="none"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v6h3v-6h3l1-3h-4v-2c0-.5.5-1 1-1z"/></svg></a>
+            <a href="https://instagram.com/phoenixdentalsolutions" target="_blank" title="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg></a>
+          </div>
+          <p style="margin-top:14px;font-size:13px;">@phoenixdentalsolutions</p>
+        </div>
+      </div>
+      <div class="contact-map">
+
+    <iframe
+        src="https://www.google.com/maps?q=Phoenix%20Dental%20Solutions%20Greater%20Noida&output=embed"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+</div>
+    </div>
+  </div>
+</section>`;
+['home','services','team','book','testimonials','contact', 'gallery', 'blog', 'faq'].forEach(p=>{
+  document.getElementById('contactSlot-'+p).innerHTML = contactHTML;
+});
+
+/* footer once at very bottom of contact page only, but add light footer text on each page end */
+document.querySelectorAll('.page').forEach(p=>{
+  const f = document.createElement('footer');
+  f.innerHTML = `© 2026 Phoenix Dental Solutions. All rights reserved. · Website created by Raajvee Mishra.`;
+  p.appendChild(f);
+});
+
+/* ================= ROUTING ================= */
+function goTo(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));
+  const btn = document.querySelector(`.nav-links button[data-page="${page}"]`);
+  if(btn) btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  refreshReveal();
+
+}
+document.querySelector('.nav-links button[data-page="home"]').classList.add('active');
+
+function handleBooking(e){
+  e.preventDefault();
+  alert('Thanks! This is a placeholder form — connect it to your real booking system to receive requests.');
+}
+
+/* ================= SCROLL REVEAL ================= */
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+    }
+  });
+},{threshold:0.12});
+function refreshReveal(){
+  document.querySelectorAll('.page.active .reveal').forEach(el=>observer.observe(el));
+}
+refreshReveal();
+/* ================= FAQ DROPDOWN ================= */
+document.addEventListener('click', function(e){
+    if(e.target.classList.contains('faq-question')){
+        const answer = e.target.nextElementSibling;
+
+        answer.style.display =
+            answer.style.display === 'block'
+            ? 'none'
+            : 'block';
+    }
+});
+
+// ==================== GALLERY ====================
+
+let currentGallery = 0;
+
+const leftImg = document.getElementById("leftImg");
+const centerImg = document.getElementById("centerImg");
+const rightImg = document.getElementById("rightImg");
+
+const prevBtn = document.querySelector(".gallery-btn.prev");
+const nextBtn = document.querySelector(".gallery-btn.next");
+
+const dots = document.querySelectorAll(".gallery-dots .dot");
+
+function updateGallery(){
+
+    const total = galleryImages.length;
+
+    const left = (currentGallery - 1 + total) % total;
+    const right = (currentGallery + 1) % total;
+
+    leftImg.src = galleryImages[left];
+    centerImg.src = galleryImages[currentGallery];
+    rightImg.src = galleryImages[right];
+
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[currentGallery].classList.add("active");
+}
+
+function nextGallery(){
+
+    currentGallery++;
+
+    if(currentGallery >= galleryImages.length){
+
+        currentGallery = 0;
+
+    }
+
+    updateGallery();
+
+}
+
+function prevGallery(){
+
+    currentGallery--;
+
+    if(currentGallery < 0){
+
+        currentGallery = galleryImages.length - 1;
+
+    }
+
+    updateGallery();
+
+}
+
+nextBtn.addEventListener("click", nextGallery);
+
+prevBtn.addEventListener("click", prevGallery);
+
+dots.forEach((dot,index)=>{
+
+    dot.addEventListener("click",()=>{
+
+        currentGallery=index;
+
+        updateGallery();
+
+    });
+
+});
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="ArrowRight"){
+
+        nextGallery();
+
+    }
+
+    if(e.key==="ArrowLeft"){
+
+        prevGallery();
+
+    }
+
+});
+
+let startX = 0;
+
+const carousel = document.querySelector(".gallery-carousel");
+
+carousel.addEventListener("touchstart",(e)=>{
+
+    startX=e.touches[0].clientX;
+
+});
+
+carousel.addEventListener("touchend",(e)=>{
+
+    let endX=e.changedTouches[0].clientX;
+
+    if(startX-endX>50){
+
+        nextGallery();
+
+    }
+
+    if(endX-startX>50){
+
+        prevGallery();
+
+    }
+
+});
+
+updateGallery();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</body>
+</html>
