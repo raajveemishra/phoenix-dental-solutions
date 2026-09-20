@@ -215,65 +215,136 @@
 
   /* ---------- Services grid (home preview + full page) ---------- */
   .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
-  .service-card{
-    background:var(--white);
-    border-radius:20px;
-    padding:32px 26px;
-    border:1px solid var(--line);
-    transition:all .4s var(--ease);
-    position:relative;
-    overflow:hidden;
-    color:#fff;
-    isolation:isolate;
+  /* ================= SERVICE CARDS ================= */
+
+.service-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+
+  min-height:280px;
+
+  overflow:hidden;
+  isolation:isolate;
+
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.18);
+
+  background:#000;
+
+  transition:
+    transform .4s var(--ease),
+    box-shadow .4s var(--ease);
 }
+
+
+/* ================= BACKGROUND IMAGE ================= */
 
 .service-bg{
-    position:absolute;
-    inset:0;
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    opacity:.25;
-    z-index:0;
-    pointer-events:none;
-    transition:opacity .4s var(--ease), transform .4s var(--ease);
+  position:absolute;
+  inset:0;
+
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+
+  opacity:.78;
+
+  z-index:0;
+
+  transition:
+    transform .45s var(--ease),
+    opacity .45s var(--ease);
 }
 
-.service-card .service-num,
-.service-card h4,
-.service-card p{
-    position:relative;
-    z-index:1;
+
+/* ================= BLACK OVERLAY ================= */
+
+.service-card::after{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:rgba(0,0,0,.52);
+
+  z-index:1;
+
+  pointer-events:none;
 }
+
+
+/* ================= SERVICE NUMBER ================= */
+
+.service-num{
+  position:absolute;
+
+  top:20px;
+  left:26px;
+
+  z-index:2;
+
+  font-size:13px;
+  font-weight:700;
+
+  letter-spacing:.08em;
+
+  color:rgba(255,255,255,.75);
+}
+
+
+/* ================= SERVICE CONTENT ================= */
+
+.service-content{
+  position:relative;
+
+  z-index:2;
+
+  margin-top:auto;
+
+  padding:26px;
+}
+
+
+/* ================= SERVICE TITLE ================= */
 
 .service-card h4{
-    font-size:17px;
-    margin-bottom:10px;
-    color:#fff;
+  margin:0 0 10px;
+
+  font-size:18px;
+  line-height:1.25;
+
+  color:#fff;
 }
+
+
+/* ================= SERVICE DESCRIPTION ================= */
 
 .service-card p{
-    font-size:13.5px;
-    color:rgba(255,255,255,.92);
-    line-height:1.6;
+  margin:0;
+
+  font-size:13.5px;
+  line-height:1.6;
+
+  color:rgba(255,255,255,.88);
 }
 
 
-  .service-card::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:3px;
-    background:linear-gradient(90deg,var(--sky),var(--navy));
-    transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);
-  }
-  .service-card:hover::before{transform:scaleX(1);}
-  .service-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);}
-  .service-num{font-family:'Fraunces',serif;font-size:13px;color:var(--powder);font-weight:700;margin-bottom:14px;}
-  .service-card .ic{
-    width:46px;height:46px;border-radius:14px;background:var(--mist);
-    display:flex;align-items:center;justify-content:center;margin-bottom:18px;
-  }
-  .service-card .ic svg{width:22px;height:22px;stroke:var(--navy);}
-  .service-card h4{font-size:17px;margin-bottom:10px;color:var(--navy);}
-  .service-card p{font-size:13.5px;color:#6A86A1;line-height:1.6;}
+/* ================= HOVER ================= */
+
+.service-card:hover{
+  transform:translateY(-8px);
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.25);
+}
+
+
+.service-card:hover .service-bg{
+  transform:scale(1.05);
+
+  opacity:.86;
+}
 
   /* ---------- Team ---------- */
   .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
@@ -1624,22 +1695,25 @@ const galleryImages = [
 const starSVG = '<svg viewBox="0 0 24 24"><path d="M12 17.3 6.2 21l1.5-6.6L2.5 9.7l6.7-.6L12 3l2.8 6.1 6.7.6-5.2 4.7 1.5 6.6z"/></svg>';
 
 function serviceCard(s,i){
-  return `<div class="service-card reveal">
+  return `
+    <div class="service-card reveal">
 
-    <div class="service-bg" style="background-image:url('${s.image}')"></div>
+      <div
+        class="service-bg"
+        style="background-image:url('${s.image}')">
+      </div>
 
-    <div class="service-num">${(i+1).toString().padStart(3,'0')}</div>
+      <div class="service-num">
+        ${String(i + 1).padStart(3,'0')}
+      </div>
 
-    <div class="service-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#0E2A47">
-        ${s.icon}
-      </svg>
+      <div class="service-content">
+        <h4>${s.name}</h4>
+        <p>${s.desc}</p>
+      </div>
+
     </div>
-
-    <h4>${s.name}</h4>
-    <p>${s.desc}</p>
-
-  </div>`;
+  `;
 }
 function teamCard(t){
   return `<div class="team-card reveal">
