@@ -216,9 +216,49 @@
   /* ---------- Services grid (home preview + full page) ---------- */
   .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
   .service-card{
-    background:var(--white);border-radius:20px;padding:32px 26px;
-    border:1px solid var(--line);transition:all .4s var(--ease);position:relative;overflow:hidden;
-  }
+    background:var(--white);
+    border-radius:20px;
+    padding:32px 26px;
+    border:1px solid var(--line);
+    transition:all .4s var(--ease);
+    position:relative;
+    overflow:hidden;
+    color:#fff;
+    isolation:isolate;
+}
+
+.service-bg{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    opacity:.25;
+    z-index:0;
+    pointer-events:none;
+    transition:opacity .4s var(--ease), transform .4s var(--ease);
+}
+
+.service-card .service-num,
+.service-card h4,
+.service-card p{
+    position:relative;
+    z-index:1;
+}
+
+.service-card h4{
+    font-size:17px;
+    margin-bottom:10px;
+    color:#fff;
+}
+
+.service-card p{
+    font-size:13.5px;
+    color:rgba(255,255,255,.92);
+    line-height:1.6;
+}
+
+
   .service-card::before{
     content:'';position:absolute;top:0;left:0;right:0;height:3px;
     background:linear-gradient(90deg,var(--sky),var(--navy));
@@ -1278,18 +1318,91 @@ line-height:1.9;
 <script>
 /* ================= DATA ================= */
 const services = [
-  {name:"Dental implants", desc:"Metal Crown, Metal fused to porcelain crown, Zirconia crown. Complete and partial removable dentures, Flexible dentures", icon:'<path d="M12 3c-3 0-5 2-5 5 0 4 2 5 2 9 0 1.5 1 2 1.5 2s1-1 1.5-2c.3-.7.5-1.3 1-1.3s.7.6 1 1.3c.5 1 1 2 1.5 2s1.5-.5 1.5-2c0-4 2-5 2-9 0-3-2-5-5-5z" stroke-width="1.3" stroke-linejoin="round"/>'},
-  {name:"Orthodontics", desc:"Treatment with braces (metallic and ceramic)", icon:'<rect x="5" y="8" width="14" height="8" rx="4" stroke-width="1.5"/>'},
-  {name:"Laser Dentistry", desc:"Laser treatment of gummy smile, treatment of gingival enlargement, treatment of tongue tie, Crown lengthening by laser", icon:'<rect x="7" y="4" width="10" height="16" rx="3" stroke-width="1.5"/>'},
-  {name:"Tooth whitening", desc:"In-Office and night time bleaching", icon:'<circle cx="12" cy="9" r="4" stroke-width="1.5"/><path d="M6 21c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke-width="1.5" stroke-linecap="round"/>'},
-  {name:"Root Canal Treatment", desc:"Single sitting/multiple sitting", icon:'<path d="M12 2v4M6.3 6.3l2.8 2.8M2 12h4M6.3 17.7l2.8-2.8M12 18v4M14.9 14.9l2.8 2.8M18 12h4M14.9 9.1l2.8-2.8" stroke-width="1.5" stroke-linecap="round"/>'},
-  {name:"Cosmetic dental treatment", desc:"Gap closure in anterior teeth, Smile makeover, Dental jewelry management of fluorosis, Veneers, Cosmetic buildup of fractured teeth, Cosmetic contouring of teeth", icon:'<rect x="4" y="9" width="16" height="6" rx="3" stroke-width="1.5"/>'},
-  {name:"Treatment for Caries", desc:"Restoration for kids and elderly , cosmetic restoration , fluoride restorations , temporary restoration", icon:'<path d="M12 21s-7-4.5-9.5-9C0.5 7.5 3 3.5 7 4c2 .2 3.5 1.5 5 3.5C13.5 5.5 15 4.2 17 4c4-.5 6.5 3.5 4.5 8-2.5 4.5-9.5 9-9.5 9z" stroke-width="1.5" stroke-linejoin="round"/>'},
-  {name:"Crown & Bridge/ Other prosthetics", desc:"Metal Crown, Metal fused to porcelain crown, Zirconia crown. Complete and partial removable dentures, Flexible dentures", icon:'<path d="M12 2c-3 4-3 6 0 9s3 5 0 9" stroke-width="1.5" stroke-linecap="round"/>'},
-  {name:"Treatment of sports injuries", desc:"Avulsion, Luxation, Fracture", icon:'<path d="M12 2 2 21h20L12 2z" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 9v5" stroke-width="1.5" stroke-linecap="round"/>'},
-  {name:"Screening for oral cancer", desc:"Swab and punch biopsies done for screening of oral cancer", icon:'<path d="M3 9l9-5 9 5-9 5-9-5z" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 9v6l9 5 9-5V9" stroke-width="1.5" stroke-linejoin="round"/>'},
-  {name:"Extractions", desc:"Simple extraction, surgical removal of impacted teeth, surgical removal of root pieces extractions for pediatric patients", icon:'<path d="M4 14c0-5 3.5-9 8-9s8 4 8 9-3.5 7-8 7-8-2-8-7z" stroke-width="1.5"/>'},
-  {name:"Apicoectomy", desc:"Laser Treatment for periapical loss", icon:'<path d="M12 3v18M7 8h10M9 13h6" stroke-width="1.5" stroke-linecap="round"/>'}
+
+  {
+    name:"Dental implants",
+    desc:"Metal Crown, Metal fused to porcelain crown, Zirconia crown. Complete and partial removable dentures, Flexible dentures",
+    icon:'<path d="M12 3c-3 0-5 2-5 5 0 4 2 5 2 9 0 1.5 1 2 1.5 2s1-1 1.5-2c.3-.7.5-1.3 1-1.3s.7.6 1 1.3c.5 1 1 2 1.5 2s1.5-.5 1.5-2c0-4 2-5 2-9 0-3-2-5-5-5z" stroke-width="1.3" stroke-linejoin="round"/>',
+    image:"services_images/full_mouth.jpeg"
+  },
+
+  {
+    name:"Orthodontics",
+    desc:"Treatment with braces (metallic and ceramic)",
+    icon:'<rect x="5" y="8" width="14" height="8" rx="4" stroke-width="1.5"/>',
+    image:"services_images/braces_aligners.jpeg"
+  },
+
+  {
+    name:"Laser Dentistry",
+    desc:"Laser treatment of gummy smile, treatment of gingival enlargement, treatment of tongue tie, Crown lengthening by laser",
+    icon:'<rect x="7" y="4" width="10" height="16" rx="3" stroke-width="1.5"/>',
+    image:"services_images/laser.jpeg"
+  },
+
+  {
+    name:"Tooth whitening",
+    desc:"In-Office and night time bleaching",
+    icon:'<circle cx="12" cy="9" r="4" stroke-width="1.5"/><path d="M6 21c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke-width="1.5" stroke-linecap="round"/>',
+    image:"services_images/cosmetic_dental.jpeg"
+  },
+
+  {
+    name:"Root Canal Treatment",
+    desc:"Single sitting/multiple sitting",
+    icon:'<path d="M12 2v4M6.3 6.3l2.8 2.8M2 12h4M6.3 17.7l2.8-2.8M12 18v4M14.9 14.9l2.8 2.8M18 12h4M14.9 9.1l2.8-2.8" stroke-width="1.5" stroke-linecap="round"/>',
+    image:"services_images/RCT.jpeg"
+  },
+
+  {
+    name:"Cosmetic dental treatment",
+    desc:"Gap closure in anterior teeth, Smile makeover, Dental jewelry management of fluorosis, Veneers, Cosmetic buildup of fractured teeth, Cosmetic contouring of teeth",
+    icon:'<rect x="4" y="9" width="16" height="6" rx="3" stroke-width="1.5"/>',
+    image:"services_images/cosmetic_dental.jpeg"
+  },
+
+  {
+    name:"Treatment for Caries",
+    desc:"Restoration for kids and elderly , cosmetic restoration , fluoride restorations , temporary restoration",
+    icon:'<path d="M12 21s-7-4.5-9.5-9C0.5 7.5 3 3.5 7 4c2 .2 3.5 1.5 5 3.5C13.5 5.5 15 4.2 17 4c4-.5 6.5 3.5 4.5 8-2.5 4.5-9.5 9-9.5 9z" stroke-width="1.5" stroke-linejoin="round"/>',
+    image:"services_images/crown.jpeg"
+  },
+
+  {
+    name:"Crown & Bridge/ Other prosthetics",
+    desc:"Metal Crown, Metal fused to porcelain crown, Zirconia crown. Complete and partial removable dentures, Flexible dentures",
+    icon:'<path d="M12 2c-3 4-3 6 0 9s3 5 0 9" stroke-width="1.5" stroke-linecap="round"/>',
+    image:"services_images/crown.jpeg"
+  },
+
+  {
+    name:"Treatment of sports injuries",
+    desc:"Avulsion, Luxation, Fracture",
+    icon:'<path d="M12 2 2 21h20L12 2z" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 9v5" stroke-width="1.5" stroke-linecap="round"/>',
+    image:"services_images/extract.jpeg"
+  },
+
+  {
+    name:"Screening for oral cancer",
+    desc:"Swab and punch biopsies done for screening of oral cancer",
+    icon:'<path d="M3 9l9-5 9 5-9 5-9-5z" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 9v6l9 5 9-5V9" stroke-width="1.5" stroke-linejoin="round"/>',
+    image:"services_images/oral_cancer.jpeg"
+  },
+
+  {
+    name:"Extractions",
+    desc:"Simple extraction, surgical removal of impacted teeth, surgical removal of root pieces extractions for pediatric patients",
+    icon:'<path d="M4 14c0-5 3.5-9 8-9s8 4 8 9-3.5 7-8 7-8-2-8-7z" stroke-width="1.5"/>',
+    image:"services_images/extract.jpeg"
+  },
+
+  {
+    name:"Apicoectomy",
+    desc:"Laser Treatment for periapical loss",
+    icon:'<path d="M12 3v18M7 8h10M9 13h6" stroke-width="1.5" stroke-linecap="round"/>',
+    image:"services_images/RCT.jpeg"
+  }
+
 ];
 
 const team = [
@@ -1512,10 +1625,20 @@ const starSVG = '<svg viewBox="0 0 24 24"><path d="M12 17.3 6.2 21l1.5-6.6L2.5 9
 
 function serviceCard(s,i){
   return `<div class="service-card reveal">
-    <div class="service-num">0${i+1<10?'0'+(i+1):(i+1)}`.replace('000','0')+`</div>
-    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0E2A47">${s.icon}</svg></div>
+
+    <div class="service-bg" style="background-image:url('${s.image}')"></div>
+
+    <div class="service-num">${(i+1).toString().padStart(3,'0')}</div>
+
+    <div class="service-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0E2A47">
+        ${s.icon}
+      </svg>
+    </div>
+
     <h4>${s.name}</h4>
     <p>${s.desc}</p>
+
   </div>`;
 }
 function teamCard(t){
